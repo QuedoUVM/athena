@@ -1,0 +1,538 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="Arquitectura — Agente Notion" id="agente-notion-arch">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ════════════════════════════════════════ -->
+        <!--                TÍTULO                    -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="title"
+          value="Arquitectura del Sistema — Agente IA Personalizado de Notion"
+          style="text;html=0;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="1550" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--              USUARIO                     -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="user"
+          value="Usuario"
+          style="shape=mxgraph.general.person2;fillColor=#d1c4e9;strokeColor=#7e57c2;fontSize=13;fontStyle=1;verticalLabelPosition=bottom;verticalAlign=top;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="75" height="95" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--         ZONA: INTERFAZ TERMINAL          -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_terminal"
+          value=""
+          style="rounded=1;whiteSpace=wrap;fillColor=#ede7f6;strokeColor=#7e57c2;opacity=40;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="175" y="390" width="330" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_terminal"
+          value="Interfaz de Terminal"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#7e57c2;"
+          vertex="1" parent="1">
+          <mxGeometry x="175" y="395" width="330" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="file_test"
+          value="test_agente.py"
+          style="rounded=1;fillColor=#d1c4e9;strokeColor=#7e57c2;fontSize=13;fontStyle=1;align=center;html=0;"
+          vertex="1" parent="1">
+          <mxGeometry x="210" y="435" width="255" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="chat_fn"
+          value="chat()&#xa;&#xa;· Recibe input del usuario&#xa;· Llama ejecutar_agente()&#xa;· Responde en color azul (ANSI)"
+          style="rounded=1;fillColor=#ede7f6;strokeColor=#7e57c2;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="210" y="500" width="255" height="185" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--          ZONA: AGENTE IA                 -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_agent"
+          value=""
+          style="rounded=1;whiteSpace=wrap;fillColor=#e3f2fd;strokeColor=#1565c0;opacity=40;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="570" y="80" width="840" height="980" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_agent"
+          value="Agente IA — agent.py"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#1565c0;"
+          vertex="1" parent="1">
+          <mxGeometry x="570" y="86" width="840" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- .env (agente) -->
+        <mxCell id="env_agent"
+          value=".env&#xa;GROQ_API_KEY"
+          style="rounded=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="600" y="135" width="210" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- SYSTEM PROMPT -->
+        <mxCell id="sys_prompt"
+          value="SYSTEM_PROMPT&#xa;&#xa;Instrucciones base en español&#xa;para el comportamiento del agente"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="845" y="135" width="265" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- TOOLS DEFINITION -->
+        <mxCell id="tools_def"
+          value="TOOLS — JSON Schema&#xa;&#xa;· buscar_paginas(query)&#xa;· leer_pagina(page_id)&#xa;· crear_pagina(titulo, contenido)&#xa;· actualizar_pagina(id, contenido)"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1145" y="120" width="240" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- GROQ CLIENT -->
+        <mxCell id="groq_client"
+          value="Groq Client&#xa;&#xa;model: llama-3.3-70b-versatile&#xa;tool_choice: auto&#xa;parallel_tool_calls: False"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="600" y="280" width="295" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- MESSAGES HISTORY -->
+        <mxCell id="msgs"
+          value="messages[ ]&#xa;&#xa;Historial de conversación&#xa;system + user + tool + assistant"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="940" y="295" width="275" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- DECISION -->
+        <mxCell id="decision"
+          value="¿tool_calls?"
+          style="rhombus;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=14;fontStyle=1;html=0;"
+          vertex="1" parent="1">
+          <mxGeometry x="700" y="490" width="210" height="115" as="geometry" />
+        </mxCell>
+
+        <!-- EJECUTAR HERRAMIENTA -->
+        <mxCell id="exec_tool"
+          value="Ejecutar herramienta&#xa;&#xa;HERRAMIENTAS[nombre](**args)&#xa;Agrega resultado a messages[ ]"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="975" y="500" width="290" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- RECOVERY -->
+        <mxCell id="recovery"
+          value="Recuperación tool_use_failed&#xa;&#xa;_parsear_tool_call(raw)&#xa;· Regex extrae nombre + args&#xa;· Completa JSON truncado&#xa;· Maneja 3 formatos distintos"
+          style="rounded=1;fillColor=#fff8e1;strokeColor=#f57f17;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="600" y="695" width="295" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- INLINE DETECTION -->
+        <mxCell id="inline_det"
+          value="Detección inline&#xa;&#xa;Detecta tool call embebido&#xa;en content como texto&#xa;(&lt;function=...&gt;)"
+          style="rounded=1;fillColor=#fff8e1;strokeColor=#f57f17;fontSize=12;align=left;html=1;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="960" y="695" width="265" height="135" as="geometry" />
+        </mxCell>
+
+        <!-- RESPUESTA FINAL -->
+        <mxCell id="resp_final"
+          value="Respuesta final al usuario&#xa;msg.content — texto en español"
+          style="rounded=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=13;fontStyle=1;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="730" y="930" width="360" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--         ZONA: GROQ API (externo)         -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_groq"
+          value=""
+          style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;opacity=60;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="140" width="400" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_groq"
+          value="Groq API — Servicio Externo"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#f57f17;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="148" width="400" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="groq_model"
+          value="llama-3.3-70b-versatile&#xa;&#xa;LLM con function calling&#xa;70 mil millones de parámetros&#xa;Hardware LPU — baja latencia"
+          style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="190" width="340" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="groq_endp"
+          value="POST /openai/v1/chat/completions"
+          style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontSize=11;fontStyle=2;align=center;html=0;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="345" width="340" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--       ZONA: NOTION TOOLS                 -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_tools"
+          value=""
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;opacity=40;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="160" y="1130" width="1250" height="500" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_tools"
+          value="Herramientas Notion — notion_tools.py"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#1565c0;"
+          vertex="1" parent="1">
+          <mxGeometry x="160" y="1138" width="1250" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Helpers internos -->
+        <mxCell id="norm_fn"
+          value="_norm(texto)&#xa;&#xa;Normaliza acentos NFD&#xa;+ lowercase"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="195" y="1185" width="195" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leer_cont_fn"
+          value="_leer_contenido(id)&#xa;&#xa;Lee bloques y sub-bloques&#xa;párrafos, listas, headings"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="195" y="1320" width="195" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Función: buscar_paginas -->
+        <mxCell id="t_buscar"
+          value="buscar_paginas(query)&#xa;&#xa;1. notion.search(query)&#xa;2. Fallback: scan bloques&#xa;3. Normaliza acentos&#xa;4. Incluye contenido en resultado"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="430" y="1180" width="255" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- Función: leer_pagina -->
+        <mxCell id="t_leer"
+          value="leer_pagina(page_id)&#xa;&#xa;Lectura completa de bloques&#xa;e hijos anidados por ID"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="430" y="1370" width="255" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- Función: crear_pagina -->
+        <mxCell id="t_crear"
+          value="crear_pagina(titulo, contenido)&#xa;&#xa;Crea subpágina bajo&#xa;NOTION_PARENT_PAGE_ID&#xa;con título y párrafo"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="730" y="1180" width="265" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Función: actualizar_pagina -->
+        <mxCell id="t_actualizar"
+          value="actualizar_pagina(id, contenido)&#xa;&#xa;Elimina párrafos existentes&#xa;Agrega nuevo bloque párrafo"
+          style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=12;align=left;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="730" y="1345" width="265" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- .env (tools) -->
+        <mxCell id="env_tools"
+          value=".env&#xa;NOTION_TOKEN&#xa;NOTION_PARENT_PAGE_ID"
+          style="rounded=1;fillColor=#ffcdd2;strokeColor=#c62828;fontSize=12;fontStyle=1;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1050" y="1230" width="235" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--       ZONA: NOTION API (externo)         -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_notion_api"
+          value=""
+          style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;opacity=60;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="1130" width="400" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_notion_api"
+          value="Notion API — Servicio Externo"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#f57f17;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="1138" width="400" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="notion_sdk"
+          value="notion-client SDK&#xa;&#xa;notion.search()&#xa;notion.pages.create()&#xa;notion.blocks.children.list()&#xa;notion.blocks.delete()"
+          style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="1180" width="340" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--         ZONA: WORKSPACE NOTION           -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_ws"
+          value=""
+          style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;opacity=60;strokeWidth=2;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="1430" width="400" height="380" as="geometry" />
+        </mxCell>
+
+        <mxCell id="label_ws"
+          value="Workspace de Notion"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;fontColor=#2e7d32;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="1438" width="400" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ws_root"
+          value="Base de Conocimiento  (página raíz)"
+          style="rounded=1;fillColor=#c8e6c9;strokeColor=#2e7d32;fontSize=12;fontStyle=1;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="1480" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ws_juntas"
+          value="Juntas — Reuniones y fechas de sprint"
+          style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="1560" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ws_tareas"
+          value="Tareas pendientes — Materias y fechas"
+          style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="1635" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ws_ideas"
+          value="Ideas de proyecto — Lista del equipo"
+          style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=12;align=center;html=0;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1520" y="1710" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--           LEYENDA                        -->
+        <!-- ════════════════════════════════════════ -->
+        <mxCell id="bg_leyenda"
+          value=""
+          style="rounded=1;fillColor=#f5f5f5;strokeColor=#666666;whiteSpace=wrap;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="530" width="400" height="270" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lbl_leyenda"
+          value="Leyenda"
+          style="text;html=0;fontSize=14;fontStyle=1;align=center;strokeColor=none;fillColor=none;"
+          vertex="1" parent="1">
+          <mxGeometry x="1490" y="540" width="400" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1c" value="" style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="580" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l1t" value="Capa Python local (agent.py / notion_tools.py)" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="580" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l2c" value="" style="rounded=1;fillColor=#fffde7;strokeColor=#f9a825;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="620" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l2t" value="Servicio externo (Groq API / Notion API)" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="620" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l3c" value="" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="660" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l3t" value="Almacenamiento / Workspace de Notion" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="660" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l4c" value="" style="rounded=1;fillColor=#ffcdd2;strokeColor=#c62828;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="700" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l4t" value="Configuración / Variables de entorno (.env)" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="700" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l5c" value="" style="rounded=1;fillColor=#fff8e1;strokeColor=#f57f17;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="740" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l5t" value="Manejo de errores / Recuperación" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="740" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l6c" value="" style="rounded=1;fillColor=#c8e6c9;strokeColor=#2e7d32;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="780" width="35" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="l6t" value="Resultado exitoso / Respuesta al usuario" style="text;html=0;fontSize=12;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="780" width="310" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ════════════════════════════════════════ -->
+        <!--              FLECHAS                     -->
+        <!-- ════════════════════════════════════════ -->
+
+        <!-- 1. Usuario → chat() -->
+        <mxCell id="a1" value="prompt"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="user" target="chat_fn" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 2. chat() → Groq Client (ejecutar_agente) -->
+        <mxCell id="a2" value="ejecutar_agente(msg)"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="chat_fn" target="groq_client" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="592" />
+              <mxPoint x="540" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. Groq Client → Groq API -->
+        <mxCell id="a3" value="POST + messages + tools"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;"
+          edge="1" source="groq_client" target="groq_model" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1460" y="340" />
+              <mxPoint x="1460" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4. Groq API → decision (respuesta del LLM, dashed) -->
+        <mxCell id="a4" value="tool_call o content"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;dashed=1;dashPattern=8 4;exitX=0;exitY=0.5;exitDx=0;exitDy=0;"
+          edge="1" source="groq_model" target="decision" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1460" y="255" />
+              <mxPoint x="1460" y="680" />
+              <mxPoint x="870" y="680" />
+              <mxPoint x="870" y="547" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5. decision → exec_tool (Sí) -->
+        <mxCell id="a5" value="Sí — hay tool_call"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;fontStyle=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="decision" target="exec_tool" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 6. decision → respuesta final (No) -->
+        <mxCell id="a6" value="No — respuesta directa"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;fontStyle=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="decision" target="resp_final" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="870" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 7. recovery → exec_tool -->
+        <mxCell id="a7" value="tool ejecutado manualmente"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"
+          edge="1" source="recovery" target="exec_tool" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="772" />
+              <mxPoint x="1120" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 8. inline_det → exec_tool -->
+        <mxCell id="a8" value=""
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="inline_det" target="exec_tool" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1092" y="660" />
+              <mxPoint x="1300" y="660" />
+              <mxPoint x="1300" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 9. exec_tool → notion tools (buscar_paginas) -->
+        <mxCell id="a9" value="llama función Python"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="exec_tool" target="t_buscar" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="1080" />
+              <mxPoint x="557" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 10. notion tools → Notion API -->
+        <mxCell id="a10" value="HTTP requests"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="t_crear" target="notion_sdk" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1430" y="1245" />
+              <mxPoint x="1430" y="1257" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 11. resultado → messages loop (dashed) -->
+        <mxCell id="a11" value="resultado JSON"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;dashed=1;dashPattern=8 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="t_buscar" target="msgs" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1430" y="1257" />
+              <mxPoint x="1430" y="345" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 12. Notion API → Workspace -->
+        <mxCell id="a12" value="CRUD páginas y bloques"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="notion_sdk" target="ws_root" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 13. Respuesta final → chat() (dashed) -->
+        <mxCell id="a13" value="respuesta en español"
+          style="edgeStyle=orthogonalEdgeStyle;fontSize=12;dashed=1;dashPattern=8 4;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;"
+          edge="1" source="resp_final" target="chat_fn" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="975" />
+              <mxPoint x="130" y="685" />
+              <mxPoint x="337" y="685" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
