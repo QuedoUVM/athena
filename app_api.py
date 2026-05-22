@@ -12,15 +12,28 @@ La app React Native debe apuntar a la IP local de esta máquina, puerto 8000.
 """
 
 import os
+import sys
+import logging
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
+    datefmt="%H:%M:%S",
+)
 
 from agent import ejecutar_agente
 
 load_dotenv()
+
+_REQUIRED_VARS = ["GROQ_API_KEY", "NOTION_TOKEN", "NOTION_PARENT_PAGE_ID"]
+_missing = [v for v in _REQUIRED_VARS if not os.getenv(v)]
+if _missing:
+    sys.exit(f"[Athena] Variables de entorno faltantes: {', '.join(_missing)}. Copia .env.example a .env y completa los valores.")
 
 app = FastAPI(
     title="Athena — Agente Notion API",
@@ -42,10 +55,13 @@ app.add_middleware(
 
 class ChatRequest(BaseModel):
     mensaje: str
+    historial: list = Field(default_factory=list)
+    contexto_usuario: str = Field(default="")
 
 
 class ChatResponse(BaseModel):
     respuesta: str
+    historial: list
 
 
 # ── Endpoints ─────────────────────────────────────────────────────────────────
@@ -68,8 +84,8 @@ def chat(req: ChatRequest):
         raise HTTPException(status_code=400, detail="El mensaje no puede estar vacío.")
 
     try:
-        respuesta = ejecutar_agente(req.mensaje)
-        return ChatResponse(respuesta=respuesta)
+        resultado = ejecutar_agente(req.mensaje, req.historial, req.contexto_usuario)
+        return ChatResponse(respuesta=resultado["respuesta"], historial=resultado["historial"])
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error en el agente: {str(e)}")
 
