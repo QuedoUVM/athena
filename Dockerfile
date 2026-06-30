@@ -12,4 +12,6 @@ COPY agent.py app_api.py notion_tools.py ./
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app_api:app", "--host", "0.0.0.0", "--port", "8000"]
+# Cloud hosts (Render, Railway, Cloud Run) inject the port via $PORT.
+# Fall back to 8000 for local docker-compose.
+CMD ["sh", "-c", "uvicorn app_api:app --host 0.0.0.0 --port ${PORT:-8000}"]

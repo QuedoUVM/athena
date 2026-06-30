@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: athena-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # Secrets — set these in the Render dashboard (marked sync:false so they
+      # are NOT read from this file or committed to git).
+      - key: GROQ_API_KEY
+        sync: false
+      - key: NOTION_TOKEN
+        sync: false
+      - key: NOTION_PARENT_PAGE_ID
+        sync: false
